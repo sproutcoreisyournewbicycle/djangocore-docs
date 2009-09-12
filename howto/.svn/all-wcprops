@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/11442/django/trunk/docs/howto
+END
+custom-management-commands.txt
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/8843/django/trunk/docs/howto/custom-management-commands.txt
+END
+auth-remote-user.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/10803/django/trunk/docs/howto/auth-remote-user.txt
+END
+index.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/10063/django/trunk/docs/howto/index.txt
+END
+static-files.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/10371/django/trunk/docs/howto/static-files.txt
+END
+custom-file-storage.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/10371/django/trunk/docs/howto/custom-file-storage.txt
+END
+legacy-databases.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/8506/django/trunk/docs/howto/legacy-databases.txt
+END
+outputting-pdf.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/9856/django/trunk/docs/howto/outputting-pdf.txt
+END
+jython.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/10188/django/trunk/docs/howto/jython.txt
+END
+outputting-csv.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/9312/django/trunk/docs/howto/outputting-csv.txt
+END
+custom-model-fields.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/11220/django/trunk/docs/howto/custom-model-fields.txt
+END
+custom-template-tags.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/10799/django/trunk/docs/howto/custom-template-tags.txt
+END
+apache-auth.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/9806/django/trunk/docs/howto/apache-auth.txt
+END
+error-reporting.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/11219/django/trunk/docs/howto/error-reporting.txt
+END
+initial-data.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/10371/django/trunk/docs/howto/initial-data.txt
+END

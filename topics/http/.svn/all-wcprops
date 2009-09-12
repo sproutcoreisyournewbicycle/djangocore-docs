@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/11275/django/trunk/docs/topics/http
+END
+file-uploads.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/10816/django/trunk/docs/topics/http/file-uploads.txt
+END
+urls.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/11275/django/trunk/docs/topics/http/urls.txt
+END
+sessions.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/11044/django/trunk/docs/topics/http/sessions.txt
+END
+generic-views.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/8506/django/trunk/docs/topics/http/generic-views.txt
+END
+index.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/8506/django/trunk/docs/topics/http/index.txt
+END
+middleware.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/11048/django/trunk/docs/topics/http/middleware.txt
+END
+views.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/9266/django/trunk/docs/topics/http/views.txt
+END
+shortcuts.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/10303/django/trunk/docs/topics/http/shortcuts.txt
+END

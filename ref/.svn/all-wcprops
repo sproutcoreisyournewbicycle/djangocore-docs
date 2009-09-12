@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/11490/django/trunk/docs/ref
+END
+request-response.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/11490/django/trunk/docs/ref/request-response.txt
+END
+unicode.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/10371/django/trunk/docs/ref/unicode.txt
+END
+databases.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/11477/django/trunk/docs/ref/databases.txt
+END
+generic-views.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/11032/django/trunk/docs/ref/generic-views.txt
+END
+index.txt
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/11031/django/trunk/docs/ref/index.txt
+END
+django-admin.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/11053/django/trunk/docs/ref/django-admin.txt
+END
+authbackends.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/10801/django/trunk/docs/ref/authbackends.txt
+END
+middleware.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/11363/django/trunk/docs/ref/middleware.txt
+END
+settings.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/11046/django/trunk/docs/ref/settings.txt
+END
+signals.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/10303/django/trunk/docs/ref/signals.txt
+END

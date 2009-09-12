@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/11444/django/trunk/docs/ref/contrib
+END
+auth.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/8506/django/trunk/docs/ref/contrib/auth.txt
+END
+localflavor.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/10115/django/trunk/docs/ref/contrib/localflavor.txt
+END
+syndication.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/10371/django/trunk/docs/ref/contrib/syndication.txt
+END
+redirects.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/8506/django/trunk/docs/ref/contrib/redirects.txt
+END
+sitemaps.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/9026/django/trunk/docs/ref/contrib/sitemaps.txt
+END
+flatpages.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/10371/django/trunk/docs/ref/contrib/flatpages.txt
+END
+index.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/10121/django/trunk/docs/ref/contrib/index.txt
+END
+webdesign.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/8506/django/trunk/docs/ref/contrib/webdesign.txt
+END
+sites.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/9330/django/trunk/docs/ref/contrib/sites.txt
+END
+databrowse.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/9330/django/trunk/docs/ref/contrib/databrowse.txt
+END
+csrf.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/10128/django/trunk/docs/ref/contrib/csrf.txt
+END
+contenttypes.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/11218/django/trunk/docs/ref/contrib/contenttypes.txt
+END
+humanize.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/8843/django/trunk/docs/ref/contrib/humanize.txt
+END
