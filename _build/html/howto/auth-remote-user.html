@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Authentication using REMOTE_USER &mdash; Django v1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Django v1.1 documentation" href="../index.html" />
+    <link rel="up" title="“How-to” guides" href="index.html" />
+    <link rel="next" title="Writing custom django-admin commands" href="custom-management-commands.html" />
+    <link rel="prev" title="Authenticating against Django’s user database from Apache" href="apache-auth.html" /> 
+  </head>
+  <body>
+
+    <div class="document">
+  <div id="custom-doc" class="yui-t6">
+    <div id="hd">
+      <h1><a href="../index.html">Django v1.1 documentation</a></h1>
+      <div id="global-nav">
+        <a title="Home page" href="../index.html">Home</a>  |
+        <a title="Table of contents" href="../contents.html">Table of contents</a>  |
+        <a title="Global index" href="../genindex.html">Index</a>  |
+        <a title="Search" href="../modindex.html">Modules</a>
+      </div>
+      <div class="nav">
+    &laquo; <a href="apache-auth.html" title="Authenticating against Django&amp;#8217;s user database from Apache">previous</a> 
+     |
+    <a href="index.html" title="&amp;#8220;How-to&amp;#8221; guides" accesskey="U">up</a>
+   |
+    <a href="custom-management-commands.html" title="Writing custom django-admin commands">next</a> &raquo;</div>
+    </div>
+    
+    <div id="bd">
+      <div id="yui-main">
+        <div class="yui-b">
+          <div class="yui-g" id="howto-auth-remote-user">
+            
+  <div class="section" id="s-authentication-using-remote-user">
+<span id="s-howto-auth-remote-user"></span><span id="authentication-using-remote-user"></span><span id="howto-auth-remote-user"></span><h1>Authentication using <tt class="docutils literal"><span class="pre">REMOTE_USER</span></tt><a class="headerlink" href="#authentication-using-remote-user" title="Permalink to this headline">¶</a></h1>
+<p>This document describes how to make use of external authentication sources
+(where the Web server sets the <tt class="docutils literal"><span class="pre">REMOTE_USER</span></tt> environment variable) in your
+Django applications.  This type of authentication solution is typically seen on
+intranet sites, with single sign-on solutions such as IIS and Integrated
+Windows Authentication or Apache and <a class="reference external" href="http://httpd.apache.org/docs/2.2/mod/mod_authnz_ldap.html">mod_authnz_ldap</a>, <a class="reference external" href="http://www.ja-sig.org/products/cas/">CAS</a>, <a class="reference external" href="http://weblogin.org">Cosign</a>,
+<a class="reference external" href="http://www.stanford.edu/services/webauth/">WebAuth</a>, <a class="reference external" href="http://sourceforge.net/projects/mod-auth-sspi">mod_auth_sspi</a>, etc.</p>
+<p>When the Web server takes care of authentication it typically sets the
+<tt class="docutils literal"><span class="pre">REMOTE_USER</span></tt> environment variable for use in the underlying application.  In
+Django, <tt class="docutils literal"><span class="pre">REMOTE_USER</span></tt> is made available in the <a title="django.http.HttpRequest.META" class="reference external" href="../ref/request-response.html#django.http.HttpRequest.META"><tt class="xref docutils literal"><span class="pre">request.META</span></tt></a> attribute.  Django can be configured to make
+use of the <tt class="docutils literal"><span class="pre">REMOTE_USER</span></tt> value using the <tt class="docutils literal"><span class="pre">RemoteUserMiddleware</span></tt> and
+<tt class="docutils literal"><span class="pre">RemoteUserBackend</span></tt> classes found in <a title="Django's authentication framework." class="reference external" href="../topics/auth.html#module-django.contrib.auth"><tt class="xref docutils literal"><span class="pre">django.contrib.auth</span></tt></a>.</p>
+<div class="section" id="s-configuration">
+<span id="configuration"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>First, you must add the
+<tt class="xref docutils literal"><span class="pre">django.contrib.auth.middleware.RemoteUserMiddleware</span></tt> to the
+<a class="reference external" href="../ref/settings.html#setting-MIDDLEWARE_CLASSES"><tt class="xref docutils literal"><span class="pre">MIDDLEWARE_CLASSES</span></tt></a> setting <strong>after</strong> the
+<tt class="xref docutils literal"><span class="pre">django.contrib.auth.middleware.AuthenticationMiddleware</span></tt>:</p>
+<div class="highlight-python"><pre>MIDDLEWARE_CLASSES = (
+    ...
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
+    ...
+    )</pre>
+</div>
+<p>Next, you must replace the <a title="django.contrib.auth.backends.ModelBackend" class="reference external" href="../ref/authbackends.html#django.contrib.auth.backends.ModelBackend"><tt class="xref docutils literal"><span class="pre">ModelBackend</span></tt></a>
+with <tt class="docutils literal"><span class="pre">RemoteUserBackend</span></tt> in the <a class="reference external" href="../ref/settings.html#setting-AUTHENTICATION_BACKENDS"><tt class="xref docutils literal"><span class="pre">AUTHENTICATION_BACKENDS</span></tt></a> setting:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#39;django.contrib.auth.backends.RemoteUserBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>With this setup, <tt class="docutils literal"><span class="pre">RemoteUserMiddleware</span></tt> will detect the username in
+<tt class="docutils literal"><span class="pre">request.META['REMOTE_USER']</span></tt> and will authenticate and auto-login that user
+using the <tt class="docutils literal"><span class="pre">RemoteUserBackend</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since the <tt class="docutils literal"><span class="pre">RemoteUserBackend</span></tt> inherits from <tt class="docutils literal"><span class="pre">ModelBackend</span></tt>, you will
+still have all of the same permissions checking that is implemented in
+<tt class="docutils literal"><span class="pre">ModelBackend</span></tt>.</p>
+</div>
+<p>If your authentication mechanism uses a custom HTTP header and not
+<tt class="docutils literal"><span class="pre">REMOTE_USER</span></tt>, you can subclass <tt class="docutils literal"><span class="pre">RemoteUserMiddleware</span></tt> and set the
+<tt class="docutils literal"><span class="pre">header</span></tt> attribute to the desired <tt class="docutils literal"><span class="pre">request.META</span></tt> key.  For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.auth.middleware</span> <span class="kn">import</span> <span class="n">RemoteUserMiddleware</span>
+
+<span class="k">class</span> <span class="nc">CustomHeaderMiddleware</span><span class="p">(</span><span class="n">RemoteUserMiddleware</span><span class="p">):</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="s">&#39;HTTP_AUTHUSER&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-remoteuserbackend">
+<span id="remoteuserbackend"></span><h2><tt class="docutils literal"><span class="pre">RemoteUserBackend</span></tt><a class="headerlink" href="#remoteuserbackend" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="django.contrib.backends.RemoteUserBackend">
+<em class="property">class </em><tt class="descclassname">django.contrib.backends.</tt><tt class="descname">RemoteUserBackend</tt><a class="headerlink" href="#django.contrib.backends.RemoteUserBackend" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>If you need more control, you can create your own authentication backend
+that inherits from <tt class="docutils literal"><span class="pre">RemoteUserBackend</span></tt> and overrides certain parts:</p>
+<div class="section" id="s-attributes">
+<span id="attributes"></span><h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<dl class="attribute">
+<dt id="RemoteUserBackend.create_unknown_user">
+<tt class="descclassname">RemoteUserBackend.</tt><tt class="descname">create_unknown_user</tt><a class="headerlink" href="#RemoteUserBackend.create_unknown_user" title="Permalink to this definition">¶</a></dt>
+<dd><tt class="xref docutils literal"><span class="pre">True</span></tt> or <tt class="xref docutils literal"><span class="pre">False</span></tt>.  Determines whether or not a
+<a title="django.contrib.auth.models.User" class="reference external" href="../topics/auth.html#django.contrib.auth.models.User"><tt class="xref docutils literal"><span class="pre">User</span></tt></a> object is created if not already
+in the database.  Defaults to <tt class="xref docutils literal"><span class="pre">True</span></tt>.</dd></dl>
+
+</div>
+<div class="section" id="s-methods">
+<span id="methods"></span><h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="RemoteUserBackend.clean_username">
+<tt class="descclassname">RemoteUserBackend.</tt><tt class="descname">clean_username</tt>(<em>username</em>)<a class="headerlink" href="#RemoteUserBackend.clean_username" title="Permalink to this definition">¶</a></dt>
+<dd>Performs any cleaning on the <tt class="docutils literal"><span class="pre">username</span></tt> (e.g. stripping LDAP DN
+information) prior to using it to get or create a
+<a title="django.contrib.auth.models.User" class="reference external" href="../topics/auth.html#django.contrib.auth.models.User"><tt class="xref docutils literal"><span class="pre">User</span></tt></a> object.  Returns the cleaned
+username.</dd></dl>
+
+<dl class="method">
+<dt id="RemoteUserBackend.configure_user">
+<tt class="descclassname">RemoteUserBackend.</tt><tt class="descname">configure_user</tt>(<em>user</em>)<a class="headerlink" href="#RemoteUserBackend.configure_user" title="Permalink to this definition">¶</a></dt>
+<dd>Configures a newly created user.  This method is called immediately after a
+new user is created, and can be used to perform custom setup actions, such
+as setting the user's groups based on attributes in an LDAP directory.
+Returns the user object.</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>         
+        </div>
+      </div>
+      
+        
+          <div class="yui-b" id="sidebar">
+            
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Authentication using <tt class="docutils literal"><span class="pre">REMOTE_USER</span></tt></a><ul>
+<li><a class="reference external" href="#configuration">Configuration</a></li>
+<li><a class="reference external" href="#remoteuserbackend"><tt class="docutils literal"><span class="pre">RemoteUserBackend</span></tt></a><ul>
+<li><a class="reference external" href="#attributes">Attributes</a></li>
+<li><a class="reference external" href="#methods">Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>Browse</h3>
+  <ul>
+    
+      <li>Prev: <a href="apache-auth.html">Authenticating against Django&#8217;s user database from Apache</a></li>
+    
+    
+      <li>Next: <a href="custom-management-commands.html">Writing custom django-admin commands</a></li>
+    
+  </ul>
+  <h3>You are here:</h3>
+  <ul>
+      <li>
+        <a href="../index.html">Django v1.1 documentation</a>
+        
+          <ul><li><a href="index.html">&#8220;How-to&#8221; guides</a>
+        
+        <ul><li>Authentication using <tt class="docutils literal docutils literal"><span class="pre">REMOTE_USER</span></tt></li></ul>
+        </li></ul>
+      </li>
+  </ul>  
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/howto/auth-remote-user.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+              <h3>Last update:</h3>
+              <p class="topless">Sep 12, 2009</p>
+          </div> 
+        
+      
+    </div>
+    
+    <div id="ft">
+      <div class="nav">
+    &laquo; <a href="apache-auth.html" title="Authenticating against Django&amp;#8217;s user database from Apache">previous</a> 
+     |
+    <a href="index.html" title="&amp;#8220;How-to&amp;#8221; guides" accesskey="U">up</a>
+   |
+    <a href="custom-management-commands.html" title="Writing custom django-admin commands">next</a> &raquo;</div>
+    </div>
+  </div>
+
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

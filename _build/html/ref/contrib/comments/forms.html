@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Comment form classes &mdash; Django v1.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Django v1.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Django’s comments framework" href="index.html" />
+    <link rel="next" title="Generic comment moderation" href="moderation.html" />
+    <link rel="prev" title="Customizing the comments framework" href="custom.html" /> 
+  </head>
+  <body>
+
+    <div class="document">
+  <div id="custom-doc" class="yui-t6">
+    <div id="hd">
+      <h1><a href="../../../index.html">Django v1.1 documentation</a></h1>
+      <div id="global-nav">
+        <a title="Home page" href="../../../index.html">Home</a>  |
+        <a title="Table of contents" href="../../../contents.html">Table of contents</a>  |
+        <a title="Global index" href="../../../genindex.html">Index</a>  |
+        <a title="Search" href="../../../modindex.html">Modules</a>
+      </div>
+      <div class="nav">
+    &laquo; <a href="custom.html" title="Customizing the comments framework">previous</a> 
+     |
+    <a href="../../index.html" title="API Reference" accesskey="U">up</a>
+   |
+    <a href="moderation.html" title="Generic comment moderation">next</a> &raquo;</div>
+    </div>
+    
+    <div id="bd">
+      <div id="yui-main">
+        <div class="yui-b">
+          <div class="yui-g" id="ref-contrib-comments-forms">
+            
+  <div class="section" id="s-module-django.contrib.comments.forms">
+<span id="s-ref-contrib-comments-forms"></span><span id="module-django.contrib.comments.forms"></span><span id="ref-contrib-comments-forms"></span><h1>Comment form classes<a class="headerlink" href="#module-django.contrib.comments.forms" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="docutils literal"><span class="pre">django.contrib.comments.forms</span></tt> module contains a handful of forms
+you&#8217;ll use when writing custom views dealing with comments, or when writing
+<a class="reference external" href="custom.html#ref-contrib-comments-custom"><em>custom comment apps</em></a>.</p>
+<dl class="class">
+<dt id="django.contrib.comments.forms.CommentForm">
+<em class="property">class </em><tt class="descname">CommentForm</tt><a class="headerlink" href="#django.contrib.comments.forms.CommentForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main comment form representing the standard, built-in way of handling
+submitted comments. This is the class used by all the views
+<a title="Django's comment framework" class="reference external" href="index.html#module-django.contrib.comments"><tt class="xref docutils literal"><span class="pre">django.contrib.comments</span></tt></a> to handle submitted comments.</p>
+<p>If you want to build custom views that are similar to Django&#8217;s built-in
+comment handling views, you&#8217;ll probably want to use this form.</p>
+</dd></dl>
+
+<div class="section" id="s-abstract-comment-forms-for-custom-comment-apps">
+<span id="abstract-comment-forms-for-custom-comment-apps"></span><h2>Abstract comment forms for custom comment apps<a class="headerlink" href="#abstract-comment-forms-for-custom-comment-apps" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re building a <a class="reference external" href="custom.html#ref-contrib-comments-custom"><em>custom comment app</em></a>,
+you might want to replace <em>some</em> of the form logic but still rely on parts of
+the existing form.</p>
+<p><a title="django.contrib.comments.forms.CommentForm" class="reference internal" href="#django.contrib.comments.forms.CommentForm"><tt class="xref docutils literal"><span class="pre">CommentForm</span></tt></a> is actually composed of a couple of abstract base class
+forms that you can subclass to reuse pieces of the form handling logic:</p>
+<dl class="class">
+<dt id="django.contrib.comments.forms.CommentSecurityForm">
+<em class="property">class </em><tt class="descname">CommentSecurityForm</tt><a class="headerlink" href="#django.contrib.comments.forms.CommentSecurityForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the anti-spoofing protection aspects of the comment form handling.</p>
+<p>This class contains the <tt class="docutils literal"><span class="pre">content_type</span></tt> and <tt class="docutils literal"><span class="pre">object_pk</span></tt> fields pointing
+to the object the comment is attached to, along with a <tt class="docutils literal"><span class="pre">timestamp</span></tt> and a
+<tt class="docutils literal"><span class="pre">security_hash</span></tt> of all the form data. Together, the timestamp and the
+security hash ensure that spammers can&#8217;t &#8220;replay&#8221; form submissions and
+flood you with comments.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="django.contrib.comments.forms.CommentDetailsForm">
+<em class="property">class </em><tt class="descname">CommentDetailsForm</tt><a class="headerlink" href="#django.contrib.comments.forms.CommentDetailsForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the details of the comment itself.</p>
+<p>This class contains the <tt class="docutils literal"><span class="pre">name</span></tt>, <tt class="docutils literal"><span class="pre">email</span></tt>, <tt class="docutils literal"><span class="pre">url</span></tt>, and the <tt class="docutils literal"><span class="pre">comment</span></tt>
+field itself, along with the associated valdation logic.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>         
+        </div>
+      </div>
+      
+        
+          <div class="yui-b" id="sidebar">
+            
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../../contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Comment form classes</a><ul>
+<li><a class="reference external" href="#abstract-comment-forms-for-custom-comment-apps">Abstract comment forms for custom comment apps</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>Browse</h3>
+  <ul>
+    
+      <li>Prev: <a href="custom.html">Customizing the comments framework</a></li>
+    
+    
+      <li>Next: <a href="moderation.html">Generic comment moderation</a></li>
+    
+  </ul>
+  <h3>You are here:</h3>
+  <ul>
+      <li>
+        <a href="../../../index.html">Django v1.1 documentation</a>
+        
+          <ul><li><a href="../../index.html">API Reference</a>
+        
+          <ul><li><a href="../index.html">The &#8220;django.contrib&#8221; add-ons</a>
+        
+          <ul><li><a href="index.html">Django&#8217;s comments framework</a>
+        
+        <ul><li>Comment form classes</li></ul>
+        </li></ul></li></ul></li></ul>
+      </li>
+  </ul>  
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../../_sources/ref/contrib/comments/forms.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+              <h3>Last update:</h3>
+              <p class="topless">Sep 12, 2009</p>
+          </div> 
+        
+      
+    </div>
+    
+    <div id="ft">
+      <div class="nav">
+    &laquo; <a href="custom.html" title="Customizing the comments framework">previous</a> 
+     |
+    <a href="../../index.html" title="API Reference" accesskey="U">up</a>
+   |
+    <a href="moderation.html" title="Generic comment moderation">next</a> &raquo;</div>
+    </div>
+  </div>
+
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

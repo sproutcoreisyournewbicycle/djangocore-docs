@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The built-in comment models &mdash; Django v1.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Django v1.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Django’s comments framework" href="index.html" />
+    <link rel="next" title="Comment settings" href="settings.html" />
+    <link rel="prev" title="Django’s comments framework" href="index.html" /> 
+  </head>
+  <body>
+
+    <div class="document">
+  <div id="custom-doc" class="yui-t6">
+    <div id="hd">
+      <h1><a href="../../../index.html">Django v1.1 documentation</a></h1>
+      <div id="global-nav">
+        <a title="Home page" href="../../../index.html">Home</a>  |
+        <a title="Table of contents" href="../../../contents.html">Table of contents</a>  |
+        <a title="Global index" href="../../../genindex.html">Index</a>  |
+        <a title="Search" href="../../../modindex.html">Modules</a>
+      </div>
+      <div class="nav">
+    &laquo; <a href="index.html" title="Django&amp;#8217;s comments framework">previous</a> 
+     |
+    <a href="../../index.html" title="API Reference" accesskey="U">up</a>
+   |
+    <a href="settings.html" title="Comment settings">next</a> &raquo;</div>
+    </div>
+    
+    <div id="bd">
+      <div id="yui-main">
+        <div class="yui-b">
+          <div class="yui-g" id="ref-contrib-comments-models">
+            
+  <div class="section" id="s-module-django.contrib.comments.models">
+<span id="s-ref-contrib-comments-models"></span><span id="module-django.contrib.comments.models"></span><span id="ref-contrib-comments-models"></span><h1>The built-in comment models<a class="headerlink" href="#module-django.contrib.comments.models" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="django.contrib.comments.models.Comment">
+<em class="property">class </em><tt class="descname">Comment</tt><a class="headerlink" href="#django.contrib.comments.models.Comment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Django&#8217;s built-in comment model. Has the following fields:</p>
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.content_object">
+<tt class="descname">content_object</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.content_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <tt class="xref docutils literal"><span class="pre">GenericForeignKey</span></tt>
+attribute pointing to the object the comment is attached to. You can use
+this to get at the related object (i.e. <tt class="docutils literal"><span class="pre">my_comment.content_object</span></tt>).</p>
+<p>Since this field is a
+<tt class="xref docutils literal"><span class="pre">GenericForeignKey</span></tt>, it&#8217;s
+actually syntactic sugar on top of two underlying attributes, described
+below.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.content_type">
+<tt class="descname">content_type</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.content_type" title="Permalink to this definition">¶</a></dt>
+<dd>A <a title="django.db.models.ForeignKey" class="reference external" href="../../models/fields.html#django.db.models.ForeignKey"><tt class="xref docutils literal"><span class="pre">ForeignKey</span></tt></a> to
+<a title="django.contrib.contenttypes.models.ContentType" class="reference external" href="../contenttypes.html#django.contrib.contenttypes.models.ContentType"><tt class="xref docutils literal"><span class="pre">ContentType</span></tt></a>; this is the
+type of the object the comment is attached to.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.object_pk">
+<tt class="descname">object_pk</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.object_pk" title="Permalink to this definition">¶</a></dt>
+<dd>A <a title="django.db.models.TextField" class="reference external" href="../../models/fields.html#django.db.models.TextField"><tt class="xref docutils literal"><span class="pre">TextField</span></tt></a> containing the primary
+key of the object the comment is attached to.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.site">
+<tt class="descname">site</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.site" title="Permalink to this definition">¶</a></dt>
+<dd>A <a title="django.db.models.ForeignKey" class="reference external" href="../../models/fields.html#django.db.models.ForeignKey"><tt class="xref docutils literal"><span class="pre">ForeignKey</span></tt></a> to the
+<tt class="xref docutils literal"><span class="pre">Site</span></tt> on which the comment was
+posted.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.user">
+<tt class="descname">user</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.user" title="Permalink to this definition">¶</a></dt>
+<dd>A <a title="django.db.models.ForeignKey" class="reference external" href="../../models/fields.html#django.db.models.ForeignKey"><tt class="xref docutils literal"><span class="pre">ForeignKey</span></tt></a> to the
+<a title="django.contrib.auth.models.User" class="reference external" href="../../../topics/auth.html#django.contrib.auth.models.User"><tt class="xref docutils literal"><span class="pre">User</span></tt></a> who posted the comment.
+May be blank if the comment was posted by an unauthenticated user.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.user_name">
+<tt class="descname">user_name</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.user_name" title="Permalink to this definition">¶</a></dt>
+<dd>The name of the user who posted the comment.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.user_email">
+<tt class="descname">user_email</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.user_email" title="Permalink to this definition">¶</a></dt>
+<dd>The email of the user who posteed the comment.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.user_url">
+<tt class="descname">user_url</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.user_url" title="Permalink to this definition">¶</a></dt>
+<dd>The URL entered by the person who posted the comment.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.comment">
+<tt class="descname">comment</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.comment" title="Permalink to this definition">¶</a></dt>
+<dd>The actual content of the comment itself.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.submit_date">
+<tt class="descname">submit_date</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.submit_date" title="Permalink to this definition">¶</a></dt>
+<dd>The date the comment was submitted.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.ip_address">
+<tt class="descname">ip_address</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.ip_address" title="Permalink to this definition">¶</a></dt>
+<dd>The IP address of the user posting the comment.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.is_public">
+<tt class="descname">is_public</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.is_public" title="Permalink to this definition">¶</a></dt>
+<dd><tt class="xref docutils literal"><span class="pre">False</span></tt> if the comment is in moderation (see
+<a class="reference external" href="moderation.html#ref-contrib-comments-moderation"><em>Generic comment moderation</em></a>); If <tt class="xref docutils literal"><span class="pre">True</span></tt>, the comment will
+be displayed on the site.</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.comments.models.Comment.is_removed">
+<tt class="descname">is_removed</tt><a class="headerlink" href="#django.contrib.comments.models.Comment.is_removed" title="Permalink to this definition">¶</a></dt>
+<dd><tt class="xref docutils literal"><span class="pre">True</span></tt> if the comment was removed. Used to keep track of removed
+comments instead of just deleting them.</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>         
+        </div>
+      </div>
+      
+        
+          <div class="yui-b" id="sidebar">
+            
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>Browse</h3>
+  <ul>
+    
+      <li>Prev: <a href="index.html">Django&#8217;s comments framework</a></li>
+    
+    
+      <li>Next: <a href="settings.html">Comment settings</a></li>
+    
+  </ul>
+  <h3>You are here:</h3>
+  <ul>
+      <li>
+        <a href="../../../index.html">Django v1.1 documentation</a>
+        
+          <ul><li><a href="../../index.html">API Reference</a>
+        
+          <ul><li><a href="../index.html">The &#8220;django.contrib&#8221; add-ons</a>
+        
+          <ul><li><a href="index.html">Django&#8217;s comments framework</a>
+        
+        <ul><li>The built-in comment models</li></ul>
+        </li></ul></li></ul></li></ul>
+      </li>
+  </ul>  
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../../_sources/ref/contrib/comments/models.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+              <h3>Last update:</h3>
+              <p class="topless">Sep 12, 2009</p>
+          </div> 
+        
+      
+    </div>
+    
+    <div id="ft">
+      <div class="nav">
+    &laquo; <a href="index.html" title="Django&amp;#8217;s comments framework">previous</a> 
+     |
+    <a href="../../index.html" title="API Reference" accesskey="U">up</a>
+   |
+    <a href="settings.html" title="Comment settings">next</a> &raquo;</div>
+    </div>
+  </div>
+
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>
